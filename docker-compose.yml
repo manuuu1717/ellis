@@ -1,0 +1,28 @@
+services:
+  # Define o serviço principal da sua aplicação. Você pode renomear 'app' se quiser.
+  app:
+    # 'build: .' instrui o Docker Compose a construir uma imagem a partir do
+    # Dockerfile localizado no diretório atual.
+    # É necessário que você tenha um Dockerfile para sua aplicação.
+    build: .
+
+    # Como alternativa ao 'build', você pode usar uma imagem já existente do Docker Hub.
+    # Descomente a linha abaixo e substitua com o nome da sua imagem.
+    # image: seu-usuario/sua-imagem:tag
+
+    # Mapeia a porta 8080 da sua máquina (host) para a porta 3000 do contêiner.
+    # Altere a porta '3000' para a porta que sua aplicação realmente expõe.
+    ports:
+      - "8080:3000"
+
+    # Monta o diretório atual (onde está o docker-compose.yml)
+    # dentro do contêiner no caminho /app.
+    # Isso é muito útil para desenvolvimento, pois as alterações no seu código
+    # são refletidas em tempo real dentro do contêiner.
+    volumes:
+      - .:/app
+
+    # Define variáveis de ambiente que estarão disponíveis para a sua aplicação.
+    environment:
+      - NODE_ENV=development
+      # - MINHA_VARIAVEL=meu_valor
